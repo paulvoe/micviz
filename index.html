@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Mic Viz</title>
+
+    <!-- CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/micviz.css" rel="stylesheet">
+
+    <!-- Ubuntu 300 Font -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300" rel="stylesheet">
+
+    <!-- Favicon -->
+    <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> -->
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="page-header">Mic Viz</h1>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="app">
+            <div class="dingens" v-bind:style="{ width: b + '%' }"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script type="text/javascript" src="js/micdata.js"></script>
+  <script type="text/javascript" src="js/micviz.js"></script>
+</html>

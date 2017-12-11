@@ -33,14 +33,6 @@ function init() {
 }
 
 
-function addModelToScene( geometry, materials ) {
-    var material = new THREE.MeshFaceMaterial(materials);
-    model = new THREE.Mesh( geometry, material );
-    model.scale.set(0.5,0.5,0.5);
-    scene.add( model );
-}
-
-
 function animate() {
 
     requestAnimationFrame( animate );

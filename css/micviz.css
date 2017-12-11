@@ -6,10 +6,10 @@
 }
 
 
-.dingens {
-    width: 10px;
-    height: 20px;
-    background: red;
-    -webkit-transition: width 0.1s; /* For Safari 3.1 to 6.0 */
-    transition: width 0.1s;
+.eqbar {
+  width: 10px;
+  height: 20px;
+  background: red;
+  -webkit-transition: width 0.1s; /* For Safari 3.1 to 6.0 */
+  transition: width 0.1s;
 }

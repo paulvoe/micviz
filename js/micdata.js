@@ -44,9 +44,10 @@ function getMicData(vizfunction) {
     function start_microphone(stream, vizfunction) {
         gain_node = audioContext.createGain();
         gain_node.connect( audioContext.destination );
+        console.log(audioContext.destination);
 
         microphone_stream = audioContext.createMediaStreamSource(stream);
-        microphone_stream.connect(gain_node);
+        // microphone_stream.connect(gain_node);
 
         script_processor_node = audioContext.createScriptProcessor(BUFF_SIZE, 1, 1);
         // script_processor_node.onaudioprocess = process_microphone_buffer;

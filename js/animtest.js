@@ -1,11 +1,11 @@
 
 var camera, scene, renderer, light, clock;
-var mesh;
 var character;
 var isLoaded = false;
 var action = {}, mixer;
 var activeActionName = 'idle';
 var isPlay = true;
+var ground;
 
 // var arrAnimations = [
 //   'idle',
@@ -16,7 +16,7 @@ var isPlay = true;
 // var actualAnimation = 0;
 
 var loader = new THREE.JSONLoader();
-// var textureLoader = new THREE.TextureLoader();
+var textureLoader = new THREE.TextureLoader();
 
 init();
 animate();
@@ -27,7 +27,7 @@ function init() {
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 1.2, 2.5);
+    camera.position.set(0, 3.0, 7.0);
 
 
     light = new THREE.AmbientLight(0xffffff, 1);
@@ -42,6 +42,7 @@ function init() {
     //     scene.add(ground);
     // });
 
+<<<<<<< HEAD
     loader.load('./blenderfiles/Popo_V4.json', handle_load);
 
     function handle_load(geometry, materials){
@@ -49,6 +50,12 @@ function init() {
         // scene.add(mesh);
         // mesh.position.z =-10;
 
+=======
+    loader.load('./blenderfiles/eva-animated.json', function(geometry, materials) {
+    // loader.load('./blenderfiles/eva-textured.json', function(geometry, materials) {
+    // loader.load('./blenderfiles/alleskaese.json.json', function(geometry, materials) {
+        console.log('loaded');
+>>>>>>> 9558273e3083af49a8831a5fe9f83adab1be039a
         materials.forEach(function (material) {
             material.skinning = true;
         });
@@ -58,6 +65,12 @@ function init() {
         );
 
         mixer = new THREE.AnimationMixer(character);
+        scene.add(character);
+
+        console.log(geometry.animations);
+        action.wunder = mixer.clipAction(geometry.animations[0]);
+        action.wunder.setEffectiveWeight(1);
+
 
         action.hello = mixer.clipAction(geometry.animations[ 0 ]);
        // action.idle = mixer.clipAction(geometry.animations[ 1 ]);
@@ -79,17 +92,14 @@ function init() {
 
         action.wunder.timeScale = -1;
 
-        scene.add(character);
+        animate();
+        // isLoaded = true;
+        // action.idle.play();
 
         // window.addEventListener('resize', onWindowResize, false);
         // window.addEventListener('click', onDoubleClick, false);
         // console.log('Double click to change animation');
-        animate();
-
-        isLoaded = true;
-
-        action.idle.play();
-    }
+    });
 
     // var loader = new THREE.JSONLoader();
     // loader.load('./blenderfiles/marmelab.json', function(geometry) {
@@ -118,18 +128,6 @@ function fadeAction (name) {
     activeActionName = name;
 }
 
-
-// function animate() {
-//
-//     requestAnimationFrame( animate );
-//
-//     // mesh.rotation.x += parseInt(app.a) / 1000;
-//     // mesh.rotation.y += parseInt(app.b) / 1000;
-//     // mesh.rotation.z += parseInt(app.d) / 1000;
-//
-//     renderer.render( scene, camera );
-//
-// }
 
 function animate () {
     requestAnimationFrame(animate);

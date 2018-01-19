@@ -42,7 +42,7 @@ function init() {
     //     scene.add(ground);
     // });
 
-    loader.load('./blenderfiles/eva-animated.json', handle_load);
+    loader.load('./blenderfiles/Popo_V4.json', handle_load);
 
     function handle_load(geometry, materials){
         // mesh = new THREE.Mesh(geometry, materials);
@@ -60,24 +60,24 @@ function init() {
         mixer = new THREE.AnimationMixer(character);
 
         action.hello = mixer.clipAction(geometry.animations[ 0 ]);
-        action.idle = mixer.clipAction(geometry.animations[ 1 ]);
-        action.run = mixer.clipAction(geometry.animations[ 3 ]);
-        action.walk = mixer.clipAction(geometry.animations[ 4 ]);
+       // action.idle = mixer.clipAction(geometry.animations[ 1 ]);
+        //action.run = //mixer.clipAction(geometry.animations[ 3 ]);
+        //action.walk = mixer.clipAction(geometry.animations[ 4 ]);
 
-        action.hello.setEffectiveWeight(1);
-        action.idle.setEffectiveWeight(1);
-        action.run.setEffectiveWeight(1);
-        action.walk.setEffectiveWeight(1);
+        action.wunder.setEffectiveWeight(1);
+        //action.idle.setEffectiveWeight(1);
+       // action.run.setEffectiveWeight(1);
+      //action.walk.setEffectiveWeight(1);
 
-        action.hello.setLoop(THREE.LoopOnce, 0);
-        action.hello.clampWhenFinished = true;
+        action.wunder.setLoop(THREE.LoopOnce, 0);
+        //action.hello.clampWhenFinished = true;
 
-        action.hello.enabled = true;
-        action.idle.enabled = true;
-        action.run.enabled = true;
-        action.walk.enabled = true;
+        action.wunder.enabled = true;
+        //action.idle.enabled = true;
+        //action.run.enabled = true;
+        //action.walk.enabled = true;
 
-        action.walk.timeScale = -1;
+        action.wunder.timeScale = -1;
 
         scene.add(character);
 

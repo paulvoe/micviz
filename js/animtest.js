@@ -1,121 +1,96 @@
 
-var camera, scene, renderer, light, clock;
-var character;
-var isLoaded = false;
-var action = {}, mixer;
-var activeActionName = 'idle';
-var isPlay = true;
-var ground;
+var renderer,
+    scene,
+    camera,
+    character,
+    myCanvas = document.getElementById('myCanvas');
 
-// var arrAnimations = [
-//   'idle',
-//   'walk',
-//   'run',
-//   'hello'
-// ];
-// var actualAnimation = 0;
+var activeActionName;
+
+//RENDERER
+renderer = new THREE.WebGLRenderer({
+    canvas: myCanvas,
+    antialias: true
+});
+renderer.setClearColor(0x000000);
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+//CAMERA
+camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+//SCENE
+scene = new THREE.Scene();
+
+//LIGHTS
+var light = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(light);
+
+var light2 = new THREE.PointLight(0xffffff, 0.4);
+scene.add(light2);
+
 
 var loader = new THREE.JSONLoader();
-var textureLoader = new THREE.TextureLoader();
+// loader.load('monkey.json', handle_load);
 
-init();
-animate();
+loader.load('blenderfiles/popo_animated.json', handle_load);
 
-function init() {
-    clock = new THREE.Clock();
+var actions = {}, mixer;
 
-    scene = new THREE.Scene();
+function handle_load(geometry, materials) {
 
-    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 3.0, 7.0);
+    character = new THREE.SkinnedMesh(
+        geometry,
+        new THREE.MeshFaceMaterial(materials)
+    );
 
+    for(var x=0;x<materials.length;x++) materials[x].skinning = true;
 
-    light = new THREE.AmbientLight(0xffffff, 1);
-
-    scene.add(light);
-
-    // textureLoader.load('blenderfiles/ground.png', function (texture) {
-    //     var geometry = new THREE.PlaneBufferGeometry(2, 2);
-    //     geometry.rotateX(-Math.PI / 2);
-    //     var material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
-    //     ground = new THREE.Mesh(geometry, material);
-    //     scene.add(ground);
-    // });
-
-<<<<<<< HEAD
-    loader.load('./blenderfiles/Popo_V4.json', handle_load);
-
-    function handle_load(geometry, materials){
-        // mesh = new THREE.Mesh(geometry, materials);
-        // scene.add(mesh);
-        // mesh.position.z =-10;
-
-=======
-    loader.load('./blenderfiles/eva-animated.json', function(geometry, materials) {
-    // loader.load('./blenderfiles/eva-textured.json', function(geometry, materials) {
-    // loader.load('./blenderfiles/alleskaese.json.json', function(geometry, materials) {
-        console.log('loaded');
->>>>>>> 9558273e3083af49a8831a5fe9f83adab1be039a
-        materials.forEach(function (material) {
-            material.skinning = true;
-        });
-        character = new THREE.SkinnedMesh(
-            geometry,
-            new THREE.MeshFaceMaterial(materials)
-        );
-
-        mixer = new THREE.AnimationMixer(character);
-        scene.add(character);
-
-        console.log(geometry.animations);
-        action.wunder = mixer.clipAction(geometry.animations[0]);
-        action.wunder.setEffectiveWeight(1);
+    scene.add(character);
+    character.position.z = -20;
+    character.position.y = -3;
 
 
-        action.hello = mixer.clipAction(geometry.animations[ 0 ]);
-       // action.idle = mixer.clipAction(geometry.animations[ 1 ]);
-        //action.run = //mixer.clipAction(geometry.animations[ 3 ]);
-        //action.walk = mixer.clipAction(geometry.animations[ 4 ]);
+    //MIXER
+    mixer = new THREE.AnimationMixer(character);
 
-        action.wunder.setEffectiveWeight(1);
-        //action.idle.setEffectiveWeight(1);
-       // action.run.setEffectiveWeight(1);
-      //action.walk.setEffectiveWeight(1);
+    for(var i = 0; i < geometry.animations.length; i++) {
+        var name = geometry.animations[i].name;
+        actions[name] = mixer.clipAction(geometry.animations[i]);
+        actions[name].setLoop(THREE.LoopOnce, 0);
+        actions[name].clampWhenFinished = true;
+        actions[name].setEffectiveWeight(1);
+    }
+    console.log(actions);
 
-        action.wunder.setLoop(THREE.LoopOnce, 0);
-        //action.hello.clampWhenFinished = true;
-
-        action.wunder.enabled = true;
-        //action.idle.enabled = true;
-        //action.run.enabled = true;
-        //action.walk.enabled = true;
-
-        action.wunder.timeScale = -1;
-
-        animate();
-        // isLoaded = true;
-        // action.idle.play();
-
-        // window.addEventListener('resize', onWindowResize, false);
-        // window.addEventListener('click', onDoubleClick, false);
-        // console.log('Double click to change animation');
-    });
-
-    // var loader = new THREE.JSONLoader();
-    // loader.load('./blenderfiles/marmelab.json', function(geometry) {
-    //     mesh = new THREE.Mesh(geometry);
-    //     scene.add(mesh);
-    // });
-
-    renderer = new THREE.WebGLRenderer( { antialias: true } );
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
+    actions.wirbelsau.play();
+    activeActionName = 'wirbelsau';
 }
 
 
-function fadeAction (name) {
-    var from = action[ activeActionName ].play();
-    var to = action[ name ].play();
+//RENDER LOOP
+render();
+
+var prevTime = Date.now();
+
+function render() {
+    // if (mesh) {
+    //     mesh.rotation.y += 0.01;
+    // }
+
+    if (mixer) {
+        var time = Date.now();
+        mixer.update((time - prevTime) * 0.001);
+        prevTime = time;
+    }
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+}
+
+function fadeAction(name) {
+    var from = actions[activeActionName].play();
+    var to = actions[name].play();
 
     from.enabled = true;
     to.enabled = true;
@@ -126,20 +101,4 @@ function fadeAction (name) {
 
     from.crossFadeTo(to, 0.3);
     activeActionName = name;
-}
-
-
-function animate () {
-    requestAnimationFrame(animate);
-    if (!isPlay) return;
-    // controls.update();
-    render();
-
-}
-
-
-function render () {
-    var delta = clock.getDelta();
-    mixer.update(delta);
-    renderer.render(scene, camera);
 }

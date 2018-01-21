@@ -18,7 +18,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 
 //CAMERA
 camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000 );
- camera.position.set(0, 1.2, 2.5);
+ camera.position.set(0, 1,12);
 //SCENE
 scene = new THREE.Scene();
 
@@ -33,7 +33,7 @@ var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.1 );
 scene.add( directionalLight )
 
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.target = new THREE.Vector3(0, 0.6, 0);
+controls.target = new THREE.Vector3(0, 3, 0);
 
 
 var loader = new THREE.JSONLoader();

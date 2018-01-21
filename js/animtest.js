@@ -39,7 +39,7 @@ controls.target = new THREE.Vector3(0, 3, 0);
 var loader = new THREE.JSONLoader();
 // loader.load('monkey.json', handle_load);
 
-loader.load('blenderfiles/V5.json', handle_load);
+loader.load('blenderfiles/V6.json', handle_load);
 
 var actions = {}, mixer;
 

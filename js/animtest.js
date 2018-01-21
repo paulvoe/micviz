@@ -26,9 +26,11 @@ scene = new THREE.Scene();
 var light = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(light);
 
-var light2 = new THREE.PointLight(0xffffff, 0.4);
+var light2 = new THREE.PointLight(0xffffff, 1);
 scene.add(light2);
 
+var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.1 );
+scene.add( directionalLight )
 
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
 controls.target = new THREE.Vector3(0, 0.6, 0);

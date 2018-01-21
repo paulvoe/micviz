@@ -18,7 +18,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 
 //CAMERA
 camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
+ camera.position.set(0, 1.2, 2.5);
 //SCENE
 scene = new THREE.Scene();
 
@@ -28,6 +28,10 @@ scene.add(light);
 
 var light2 = new THREE.PointLight(0xffffff, 0.4);
 scene.add(light2);
+
+
+var controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.target = new THREE.Vector3(0, 0.6, 0);
 
 
 var loader = new THREE.JSONLoader();
@@ -47,8 +51,8 @@ function handle_load(geometry, materials) {
     for(var x=0;x<materials.length;x++) materials[x].skinning = true;
 
     scene.add(character);
-    character.position.z = -20;
-    character.position.y = -3;
+    // character.position.z = -20;
+    // character.position.y = -3;
 
 
     //MIXER
@@ -73,9 +77,8 @@ render();
 var prevTime = Date.now();
 
 function render() {
-    // if (mesh) {
-    //     mesh.rotation.y += 0.01;
-    // }
+    requestAnimationFrame(render);
+    controls.update();
 
     if (mixer) {
         var time = Date.now();
@@ -83,8 +86,8 @@ function render() {
         prevTime = time;
     }
 
+
     renderer.render(scene, camera);
-    requestAnimationFrame(render);
 }
 
 function fadeAction(name) {

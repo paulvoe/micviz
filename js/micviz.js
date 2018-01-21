@@ -2,21 +2,27 @@ $(document).ready(function() {
     getMicData(vizfunction1);
 });
 
+function max(arr) {
+    var maxi = 0;
+    for (var i = 1; i < arr.length; i++)
+        if(arr[i] > arr[maxi])
+            maxi = i;
+    return maxi;
+}
 
-var app = new Vue({
-    el: '#app',
-    data: {
-        a: '0%',
-        b: '0%',
-        c: '0%',
-        d: '0%',
-        e: '0%',
-    }
-});
+// Returns a random integer between [0, n-1]
+function random_integer(n) {
+    return Math.floor(Math.random() * n);
+}
 
+// Returns a random element from the array arr
+function random_element(arr) {
+    return arr[random_integer(arr.length)];
+}
 
+// this function is getting called all the time (almost)!
 function vizfunction1(freqArr) {
-    fftSize = freqArr.length * 2
+    fftSize = freqArr.length
 
     SAMPLERATE = 44100
 
@@ -40,9 +46,13 @@ function vizfunction1(freqArr) {
     sumE = freqArr.slice(upperD, upperE).reduce(function(a, b) { return a + b; });
     avgE = sumE / (upperE - upperD);
 
-    app.a = (avgA / 256) * 100;
-    app.b = (avgB / 256) * 100;
-    app.c = (avgC / 256) * 100;
-    app.d = (avgD / 256) * 100;
-    app.e = (avgE / 256) * 100;
+    averages = [avgA, avgB, avgC, avgD, avgE];
+    animations = [
+        ['wunder', 'wirbelsau.006'], // animations of A
+        ['also1.001'],
+        ['poporunter.002', 'wirbelsau.003'],
+        ['poporunter.001'],
+        ['wirbelsau.001'] // .. animations of E
+    ];
+    fadeAction(random_element(animations[max(averages)]));
 }

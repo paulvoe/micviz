@@ -57,14 +57,13 @@ function handle_load(geometry, materials) {
     for(var i = 0; i < geometry.animations.length; i++) {
         var name = geometry.animations[i].name;
         actions[name] = mixer.clipAction(geometry.animations[i]);
-        actions[name].setLoop(THREE.LoopOnce, 0);
-        actions[name].clampWhenFinished = true;
+        actions[name].setLoop(THREE.LoopOnce);
+        actions[name].clampWhenFinished = false;
         actions[name].setEffectiveWeight(1);
     }
+    activeActionName = 'wunder';
+    actions[activeActionName].play();
     console.log(actions);
-
-    actions.wirbelsau.play();
-    activeActionName = 'wirbelsau';
 }
 
 
@@ -89,16 +88,11 @@ function render() {
 }
 
 function fadeAction(name) {
-    var from = actions[activeActionName].play();
-    var to = actions[name].play();
-
-    from.enabled = true;
-    to.enabled = true;
-
-    if (to.loop === THREE.LoopOnce) {
-        to.reset();
+    var newAction = actions[name];
+    var activeAction = actions[activeActionName];
+    if(!activeAction.isRunning()) {
+        activeActionName = name;
+        newAction.reset();
+        newAction.play();
     }
-
-    from.crossFadeTo(to, 0.3);
-    activeActionName = name;
 }

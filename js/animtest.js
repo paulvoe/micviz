@@ -37,7 +37,7 @@ controls.target = new THREE.Vector3(0, 0.6, 0);
 var loader = new THREE.JSONLoader();
 // loader.load('monkey.json', handle_load);
 
-loader.load('blenderfiles/popo_animated.json', handle_load);
+loader.load('blenderfiles/V4.json', handle_load);
 
 var actions = {}, mixer;
 
@@ -99,3 +99,15 @@ function fadeAction(name) {
         newAction.play();
     }
 }
+
+	//		add star sphere							//
+	//////////////////////////////////////////////////////////////////////////////////
+	
+    var geometry  = new THREE.SphereGeometry(90, 32, 32)
+	var url   = 'bower_components/threex.planets/examples/images/galaxy_starfield.png'
+	var material  = new THREE.MeshBasicMaterial({
+		map : THREE.ImageUtils.loadTexture(url),
+		side  : THREE.BackSide
+	})
+	var starSphere  = new THREE.Mesh(geometry, material)
+	scene.add(starSphere)

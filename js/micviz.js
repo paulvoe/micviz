@@ -48,11 +48,12 @@ function vizfunction1(freqArr) {
 
     averages = [avgA, avgB, avgC, avgD, avgE];
     animations = [
-        ['wunder', 'wirbelsau.006'], // animations of A
-        ['also1.001'],
-        ['poporunter.002', 'wirbelsau.003'],
-        ['poporunter.001'],
-        ['wirbelsau.001'] // .. animations of E
+        ['wunder', 'wirbelsau.006','also','bootyshaken.002','ekick.001','poporunter.002'], 
+        ['also1.001','also1.001', 'chipsdont','efuss','ekick','poporunter.005','wirbelsau','wunder'],
+        
+        ['poporunter.002', 'wirbelsau.003', 'bootyshaken','poporunter','poporunter.004','wirbelsau.005'],
+        ['poporunter.001','bootyshaken.001','poporunter.003', 'efusskick','wirbelsau.002'],
+        ['wirbelsau.001','erfusskick','wirbelsau.004'] 
     ];
     fadeAction(random_element(animations[max(averages)]));
 }

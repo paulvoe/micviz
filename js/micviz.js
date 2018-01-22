@@ -48,12 +48,12 @@ function vizfunction1(freqArr) {
 
     averages = [avgA, avgB, avgC, avgD, avgE];
     animations = [
-        ['wunder', 'aarm','wirbelsau.006','also','bootyshaken.002','ekick.001','poporunter.002','aarm.008','aarm.010'], 
+        ['wunder', 'aarm','wirbelsau.006','also','bootyshaken.002','ekick.001','poporunter.002','aarm.008','aarm.010','sprung'], 
         
-        ['also1.001','also1.001', 'chipsdont','efuss','ekick','poporunter.005','wirbelsau','wunder','aarm.007','aarm.009','bkoerperwelle'],
+        ['also1.001','also1.001', 'chipsdont','efuss','ekick','poporunter.005','wirbelsau','wunder','aarm.007','aarm.009','bkoerperwelle','sprung.003'],
         
-        ['poporunter.002', 'wirbelsau.003', 'bootyshaken','poporunter','poporunter.004','wirbelsau.005','aarm.001','aarm.003','aarm.006'],
-        ['poporunter.001','bootyshaken.001','poporunter.003', 'efusskick','wirbelsau.002','aarm.002','aarm.005'],
+        ['poporunter.002', 'wirbelsau.003', 'bootyshaken','poporunter','poporunter.004','wirbelsau.005','aarm.001','aarm.003','aarm.006','sprung.001','sprung.004'],
+        ['poporunter.001','bootyshaken.001','poporunter.003', 'efusskick','wirbelsau.002','aarm.002','aarm.005','sprung.002','sprung.005'],
         ['wirbelsau.001','erfusskick','wirbelsau.004','aarm.004'] 
     ];
     fadeAction(random_element(animations[max(averages)]));

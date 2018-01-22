@@ -23,13 +23,13 @@ camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight,
 scene = new THREE.Scene();
 
 //LIGHTS
-var light = new THREE.AmbientLight(0xffffff, 0.3);
+var light = new THREE.AmbientLight(0xb3f0ff, 0.45);
 scene.add(light);
 
-var light2 = new THREE.PointLight(0xffffff, 1.4);
+var light2 = new THREE.PointLight(0x00ccff, 1.4);
 scene.add(light2);
 
-var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.3 );
+var directionalLight = new THREE.DirectionalLight( 0x00ccff, 0.5 );
 scene.add( directionalLight )
 
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -39,7 +39,7 @@ controls.target = new THREE.Vector3(0, 3, 0);
 var loader = new THREE.JSONLoader();
 // loader.load('monkey.json', handle_load);
 
-loader.load('blenderfiles/V7.json', handle_load);
+loader.load('blenderfiles/V8.json', handle_load);
 
 var actions = {}, mixer;
 

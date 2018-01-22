@@ -48,13 +48,13 @@ function vizfunction1(freqArr) {
 
     averages = [avgA, avgB, avgC, avgD, avgE];
     animations = [
-        ['wunder', 'aarm','wirbelsau.006','also','bootyshaken.002','ekick.001','poporunter.002','aarm.008','aarm.010','sprung'], 
+        ['wunder', 'aarm','wirbelsau.006','also','bootyshaken.002','ekick.001','poporunter.002','aarm.008','aarm.010','sprung','efuss.001','drehung','ganztief.001'], 
         
-        ['also1.001','also1.001', 'chipsdont','efuss','ekick','poporunter.005','wirbelsau','wunder','aarm.007','aarm.009','bkoerperwelle','sprung.003'],
+        ['also1.001','also1.001', 'chipsdont','efuss','ekick','poporunter.005','wirbelsau','wunder','aarm.007','aarm.009','bkoerperwelle','sprung.003','drehung.002','ganztief','ganztief.002','ganztief.003','huenertanz'],
         
-        ['poporunter.002', 'wirbelsau.003', 'bootyshaken','poporunter','poporunter.004','wirbelsau.005','aarm.001','aarm.003','aarm.006','sprung.001','sprung.004'],
-        ['poporunter.001','bootyshaken.001','poporunter.003', 'efusskick','wirbelsau.002','aarm.002','aarm.005','sprung.002','sprung.005'],
-        ['wirbelsau.001','erfusskick','wirbelsau.004','aarm.004'] 
+        ['poporunter.002', 'wirbelsau.003', 'bootyshaken','poporunter','poporunter.004','wirbelsau.005','aarm.001','aarm.003','aarm.006','sprung.001','sprung.004','efusskick.001','drehung.001','ganztief.004','ganztief.006'],
+        ['poporunter.001','bootyshaken.001','poporunter.003', 'efusskick','wirbelsau.002','aarm.002','aarm.005','sprung.002','sprung.005','ekick.002','eknick.001','poporunter.006','ganztief.005'],
+        ['wirbelsau.001','erfusskick','wirbelsau.004','aarm.004','drehung.003','ganztief.007'] 
     ];
     fadeAction(random_element(animations[max(averages)]));
 }
